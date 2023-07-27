@@ -1,0 +1,357 @@
+// delete the following line if no text is used
+// edit the line if you wanna use other fonts
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300,400,500);
+
+// VARIABLES
+$bg: #42a7a1;
+$height__card: 220px;
+$width__card: 280px;
+
+$height__header__card: 60px;
+$color__text__header__card: #fff;
+$bg__header__card: #f1ba64;
+
+$views__bg: #fa7373;
+$purchases__bg: #7ba2ff;
+
+$parameter__font__size: 0.65rem;
+$parameter__line__width: 11px;
+$parameter__line__height: 3px;
+
+$statistic__line__height: 1px;
+$statistic__line__bg: #f2f2f2;
+$data__point__height: 6px;
+$data__point__width: 6px;
+$data__line__stroke__width: 2;
+
+$tooltip__color: #fff;
+$tooltip__caret__height: 6px;
+$tooltip__caret__width: 6px;
+
+$day__color: #949494;
+
+// use only the available space inside the 400x400 frame
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+  border-radius: 2px;
+  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: $bg;
+  color: #333;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  margin: 0;
+}
+
+.container__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  height: $height__card;
+  width: $width__card;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+
+  .header {
+    display: flex;
+    flex-wrap: nowrap;
+    height: $height__header__card;
+    width: 100%;
+    background-color: $bg__header__card;
+    color: $color__text__header__card;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding-inline: 1rem;
+    box-sizing: border-box;
+
+    .left__side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      flex-basis: 60%;
+
+      h1 {
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      p {
+        font-size: 0.7rem;
+        font-weight: 400;
+      }
+    }
+
+    .right__side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      flex-basis: 40%;
+
+      p:first-child {
+        font-size: 0.7rem;
+        font-weight: 400;
+        text-transform: capitalize;
+      }
+
+      p:last-child {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .parameters__container {
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 2rem;
+    width: 100%;
+    padding: 1rem 0.7rem 1rem 0;
+    box-sizing: border-box;
+
+    span {
+      position: relative;
+      font-size: $parameter__font__size;
+      text-transform: capitalize;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: calc((#{$parameter__font__size} / 2) + 1px);
+        left: calc((#{$parameter__line__width} + 5px) * -1);
+        width: $parameter__line__width;
+        height: $parameter__line__height;
+        border-radius: 3px;
+      }
+    }
+
+    .views:before {
+      background-color: $views__bg;
+    }
+
+    .purchases::before {
+      background-color: $purchases__bg;
+    }
+  }
+
+  .statistic__container {
+    position: relative;
+    height: 81px;
+    width: 90%;
+    margin: 0 auto;
+
+    .line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: $statistic__line__height;
+      background: $statistic__line__bg;
+    }
+
+    .first__line {
+      top: 0;
+    }
+
+    .second__line {
+      top: 50%;
+    }
+
+    .third__line {
+      top: 100%;
+    }
+
+    .data {
+      [class^="point-"] {
+        position: absolute;
+        width: $data__point__width;
+        height: $data__point__height;
+        border-radius: 3px;
+        z-index: 10;
+        cursor: pointer;
+      }
+
+      svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        polyline {
+          fill: none;
+          stroke-width: $data__line__stroke__width;
+          stroke-linecap: round;
+        }
+      }
+    }
+
+    .data__views {
+      [class^="point-"] {
+        background: $views__bg;
+      }
+
+      [class^="point-"] .tooltip {
+        background-color: $views__bg;
+
+        &::after {
+          background-color: $views__bg;
+        }
+      }
+
+      .point-1 {
+        left: 7px;
+        top: 43px;
+      }
+
+      .point-2 {
+        left: 48px;
+        top: 9px;
+      }
+
+      .point-3 {
+        left: 88px;
+        top: 20px;
+      }
+
+      .point-4 {
+        left: 128px;
+        top: 8px;
+      }
+
+      .point-5 {
+        left: 169px;
+        top: 35px;
+      }
+
+      .point-6 {
+        left: 209px;
+        top: 45px;
+      }
+
+      .point-7 {
+        left: 249px;
+        top: 16px;
+      }
+
+      svg polyline {
+        stroke: $views__bg;
+      }
+    }
+
+    .data__purchases {
+      [class^="point-"] {
+        background: $purchases__bg;
+      }
+
+      [class^="point-"] .tooltip {
+        background-color: $purchases__bg;
+
+        &::after {
+          background-color: $purchases__bg;
+        }
+      }
+
+      .point-1 {
+        left: 7px;
+        top: 58px;
+      }
+
+      .point-2 {
+        left: 48px;
+        top: 47px;
+      }
+
+      .point-3 {
+        left: 88px;
+        top: 62px;
+      }
+
+      .point-4 {
+        left: 128px;
+        top: 52px;
+      }
+
+      .point-5 {
+        left: 169px;
+        top: 58px;
+      }
+
+      .point-6 {
+        left: 209px;
+        top: 71px;
+      }
+
+      .point-7 {
+        left: 249px;
+        top: 61px;
+      }
+
+      svg polyline {
+        stroke: $purchases__bg;
+      }
+    }
+
+    [class^="point-"] .tooltip {
+      position: absolute;
+      bottom: 13px;
+      left: 50%;
+      font-size: 11px;
+      line-height: 11px;
+      font-weight: 600;
+      color: $tooltip__color;
+      padding: 8px 6px;
+      border-radius: 3px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(-50%, 10px, 0);
+      transition: transform 0.4s ease-out 0s, opacity 0.4s ease-out 0s;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: calc(($tooltip__caret__height / 2) * -1);
+        margin-left: calc(($tooltip__caret__width / 2) * -1);
+        width: $tooltip__caret__width;
+        height: $tooltip__caret__height;
+        transform: rotate(45deg);
+      }
+    }
+
+    [class^="point-"]:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .days__container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 7px;
+
+    span {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      color: $day__color;
+    }
+  }
+}
