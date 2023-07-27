@@ -328,8 +328,8 @@ p {
         content: "";
         position: absolute;
         left: 50%;
-        bottom: calc(($tooltip__caret__height / 2) * -1);
-        margin-left: calc(($tooltip__caret__width / 2) * -1);
+        bottom: calc((#{$tooltip__caret__height} / 2) * -1);
+        margin-left: calc((#{$tooltip__caret__width} / 2) * -1);
         width: $tooltip__caret__width;
         height: $tooltip__caret__height;
         transform: rotate(45deg);
